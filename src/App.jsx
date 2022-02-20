@@ -23,8 +23,8 @@ function App() {
   async function handleGuess(newGuess) {
 
     // call service with word
-    const response = await fetch('http://office.local:5000/?guess=' + newGuess)
-    const result = await response.json()
+    const response = await fetch('http://office.local:5000/?guess=' + newGuess);
+    const result = await response.json();
 
     // append to guesses, otherwise error 'Word not in list.'
     // each letter hint: not-in-position, in-position, not-in
@@ -38,6 +38,7 @@ function App() {
       // if all letter in position, then win=true
       if (result.letters.every((letter) => letter.hint === 'in-position')) {
         setWin(true);
+        showBackground();
       }
     }
     // alert 'Word not in list.'
@@ -45,9 +46,11 @@ function App() {
   }
 
 
-  // TODO call team mate's service for background image
-  function showBackground() {
-    setBackground(`https://picsum.photos/1000/750?${(new Date()).toISOString()}`);
+  // TODO call teammate's service for background image
+  async function showBackground() {
+    const response = await fetch('https://unsplash-amazable.herokuapp.com/search?q=confetti');
+    const result = await response.json();
+    setBackground(result.imageUrl);
   }
 
   return (
@@ -62,9 +65,8 @@ function App() {
         background-position: center center;
       }
       ` }</style>
-      <button id="background" onClick={showBackground}>Call Image Service</button>
-      <div className="App">
 
+      <div className="App">
         <h1>WORD GUESS</h1>
         <hr />
         <h3>How to Play</h3>
