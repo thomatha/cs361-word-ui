@@ -14,16 +14,18 @@ function WordInput({ onSubmit, ...props }) {
     }
 
     return (
-        <input
-            {...props}
-            autoFocus
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            type="text"
-            maxLength="5"
-            id="userInput"
-            onKeyPress={handleInput}
-        />
+        <div>
+            <input
+                {...props}
+                autoFocus
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                type="text"
+                maxLength="5"
+                id="userInput"
+                onKeyPress={handleInput}
+            />
+        </div>
     );
 }
 
