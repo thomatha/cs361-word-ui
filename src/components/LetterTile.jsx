@@ -1,8 +1,10 @@
-function LetterTile({ letter }) {
+function LetterTile({ className, letter }) {
 
     let color;
 
-    if (letter.hint === 'not-in') {
+    if (letter === undefined) {
+        color = 'rgb(255, 255, 240)';
+    } else if (letter.hint === 'not-in') {
         color = 'grey';
     } else if (letter.hint === 'not-in-position') {
         color = 'rgb(220, 196, 99)';
@@ -20,7 +22,8 @@ function LetterTile({ letter }) {
             type="text"
             maxLength="1"
             id="letterTile"
-            defaultValue={letter.letter}
+            defaultValue={letter ? letter.letter : ''}
+            className={className}
         />
     );
 }
