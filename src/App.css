@@ -2,7 +2,7 @@
   background-color: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(10px);
   border-radius: 1rem;
-  margin: 2rem;
+  margin: 1rem;
   padding: 1rem;
   text-align: center;
 }
@@ -23,7 +23,8 @@ input {
 }
 
 #letterTile {
-  width: 35px;
+  width: 60px;
+  height: 60px;
 }
 
 h1 {
@@ -37,9 +38,7 @@ h3 {
 }
 
 p {
-  width: 330px;
   text-align: justify;
-  display: inline-flex;
   line-height: 1.5rem;
 }
 
@@ -50,10 +49,6 @@ p {
   margin: 0.5rem;
 }
 
-#win {
-  background-color: rgb(73, 130, 73);
-  color: white;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  margin-top: 1.5rem;
+#rules {
+  margin-bottom: 1rem;
 }

@@ -1,3 +1,4 @@
+import { Modal, ModalBody, ModalHeader, Button } from 'reactstrap';
 import './App.css';
 import Board from './components/Board';
 import WordInput from './components/WordInput';
@@ -18,6 +19,7 @@ function App() {
   const [win, setWin] = useState(false);
   const [background, setBackground] = useState();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [gameRules, setGameRules] = useState(true);
 
   // handler to submit word to microservice
   async function handleGuess(newGuess) {
@@ -46,7 +48,7 @@ function App() {
   }
 
 
-  // TODO call teammate's service for background image
+  // call teammate's service for background image
   async function showBackground() {
     const response = await fetch('https://unsplash-amazable.herokuapp.com/search?q=confetti');
     const result = await response.json();
@@ -69,16 +71,28 @@ function App() {
       <div className="App">
         <h1>WORD GUESS</h1>
         <hr />
-        <h3>How to Play</h3>
-        <p>Guess the daily 5-letter word in 6 tries.
-          Type your word and press ENTER to submit.
-          Hints will be given after each guess.
-          Your guess will be shown as colored letter tiles.
-          Grey means the letter is not in the word at all.
-          Yellow means the letter is in the wrong spot.
-          Green means the letter is in the right spot.
-        </p>
-
+        <Button id="rules" onClick={() => setGameRules(true)}>How to Play</Button>
+        <div>
+          <Modal
+            isOpen={gameRules}
+            toggle={() => setGameRules(false)}
+          >
+            <ModalHeader toggle={() => setGameRules(false)}>
+              How to Play
+            </ModalHeader>
+            <ModalBody>
+              <p>
+                Guess the daily 5-letter word in 6 tries.
+                Type your word and press ENTER to submit.
+                Hints will be given after each guess.
+                Your guess will be shown as colored letter tiles.
+                Grey means the letter is not in the word at all.
+                Yellow means the letter is in the wrong spot.
+                Green means the letter is in the right spot.
+              </p>
+            </ModalBody>
+          </Modal>
+        </div>
         <Board guesses={guesses} />
 
         {/* limit user guesses to 6 */}
@@ -89,9 +103,21 @@ function App() {
 
         {/* display win message */}
         {win && (
-          <div id="win">
-            <h3 className="animate__animated animate__tada">Well Done!</h3>
+          <div>
+            <Modal
+              isOpen={true}
+            >
+              <ModalHeader>
+                You Guessed the Word
+              </ModalHeader>
+              <ModalBody>
+                <div>
+                  Congratulations! Well Done!
+                </div>
+              </ModalBody>
+            </Modal>
           </div>
+
         )}
       </div>
       {/* <hr />
