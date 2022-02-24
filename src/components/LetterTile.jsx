@@ -10,7 +10,7 @@ function LetterTile({ className, letter }) {
         color = 'rgb(220, 196, 99)';
     } else {
         // letter in correct position
-        color = 'green';
+        color = 'rgb(73, 130, 73)';
     }
 
     return (
