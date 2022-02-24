@@ -19,7 +19,7 @@ function App() {
   const [win, setWin] = useState(false);
   const [background, setBackground] = useState();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [gameRules, setGameRules] = useState(true);
+  const [gameRules, setGameRules] = useState(false);
 
   // handler to submit word to microservice
   async function handleGuess(newGuess) {
@@ -103,25 +103,12 @@ function App() {
 
         {/* display win message */}
         {win && (
-          <div>
-            <Modal
-              isOpen={true}
-            >
-              <ModalHeader>
-                You Guessed the Word
-              </ModalHeader>
-              <ModalBody>
-                <div>
-                  Congratulations! Well Done!
-                </div>
-              </ModalBody>
-            </Modal>
+          <div id="win">
+            <h3>Congratulations! Well Done!</h3>
           </div>
 
         )}
       </div>
-      {/* <hr />
-      <pre>{JSON.stringify(guesses, null, '  ')}</pre> */}
     </div>
   );
 }
