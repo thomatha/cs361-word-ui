@@ -24,7 +24,7 @@ function App() {
   // handler to submit word to microservice
   async function handleGuess(newGuess) {
 
-    // call service with word
+    // call word guess microservice API
     const response = await fetch('http://office.local:5000/?guess=' + newGuess);
     const result = await response.json();
 
@@ -49,6 +49,7 @@ function App() {
 
 
   // call teammate's service for background image
+  // image microservice API by Casey Vu
   async function showBackground() {
     const response = await fetch('https://unsplash-amazable.herokuapp.com/search?q=confetti');
     const result = await response.json();
