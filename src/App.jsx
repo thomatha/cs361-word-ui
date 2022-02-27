@@ -1,11 +1,13 @@
-import { Modal, ModalBody, ModalHeader, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 import './App.css';
 import Board from './components/Board';
 import WordInput from './components/WordInput';
 import { useState } from 'react';
+import Rules from './components/RulesModal';
 
 
 function App() {
+
   // state for list of guesses
   const [guesses, setGuesses] = useState([
     { letters: [undefined, undefined, undefined, undefined, undefined] },
@@ -16,9 +18,11 @@ function App() {
     { letters: [undefined, undefined, undefined, undefined, undefined] },
   ]);
 
+  // index to count number of guesses
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const [win, setWin] = useState(false);
   const [background, setBackground] = useState();
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [gameRules, setGameRules] = useState(false);
 
   // handler to submit word to microservice
@@ -28,10 +32,8 @@ function App() {
     const response = await fetch('http://office.local:5000/?guess=' + newGuess);
     const result = await response.json();
 
-    // append to guesses, otherwise error 'Word not in list.'
-    // each letter hint: not-in-position, in-position, not-in
+    // update guesses list if valid guess
     if (!result.error) {
-      // update currentIndex by 1
       setCurrentIndex(currentIndex + 1);
       const updatedGuesses = [...guesses];
       updatedGuesses[currentIndex] = result;
@@ -43,13 +45,13 @@ function App() {
         showBackground();
       }
     }
-    // alert 'Word not in list.'
+    // if invalid guess, alert 'Word not in list.'
     else alert(result.error)
   }
 
 
   // call teammate's service for background image
-  // image microservice API by Casey Vu
+  // image microservice by Casey Vu
   async function showBackground() {
     const response = await fetch('https://unsplash-amazable.herokuapp.com/search?q=confetti');
     const result = await response.json();
@@ -72,28 +74,13 @@ function App() {
       <div className="App">
         <h1>WORD GUESS</h1>
         <hr />
+
         <Button id="rules" onClick={() => setGameRules(true)}>How to Play</Button>
-        <div>
-          <Modal
-            isOpen={gameRules}
-            toggle={() => setGameRules(false)}
-          >
-            <ModalHeader toggle={() => setGameRules(false)}>
-              How to Play
-            </ModalHeader>
-            <ModalBody>
-              <p>
-                Guess the daily 5-letter word in 6 tries.
-                Type your word and press ENTER to submit.
-                Hints will be given after each guess.
-                Your guess will be shown as colored letter tiles.
-                Grey means the letter is not in the word at all.
-                Yellow means the letter is in the wrong spot.
-                Green means the letter is in the right spot.
-              </p>
-            </ModalBody>
-          </Modal>
-        </div>
+        <Rules
+          isOpen={gameRules}
+          toggle={() => setGameRules(false)}
+        />
+
         <Board guesses={guesses} />
 
         {/* limit user guesses to 6 */}
