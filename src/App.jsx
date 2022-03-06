@@ -29,7 +29,7 @@ function App() {
   async function handleGuess(newGuess) {
 
     // call word guess microservice API
-    const response = await fetch('http://office.local:5000/?guess=' + newGuess);
+    const response = await fetch('https://word-guess-api.herokuapp.com/?guess=' + newGuess);
     const result = await response.json();
 
     // update guesses list if valid guess
@@ -92,7 +92,7 @@ function App() {
         {/* display win message */}
         {win && (
           <div id="win">
-            <h3>Congratulations! Well Done!</h3>
+            <h3>Congratulations, well done!</h3>
           </div>
 
         )}
