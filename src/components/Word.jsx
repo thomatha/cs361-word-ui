@@ -4,11 +4,13 @@ import LetterTile from './LetterTile';
 function Word({ word = {} }) {
 
     // animate win word
-    const win = word.letters.every((letter) => (letter && letter.hint === 'in-position'));
+    const win = word.letters.every((letter) =>
+        (letter && letter.hint === 'in-position'));
     const className = win ? 'animate__animated animate__bounce' : undefined;
 
     // flip guess letters, skip animating empty board
-    const letterClassName = (!win && word.letters.every((letter) => !!letter)) ? `animate__animated animate__flipInX` : '';
+    const letterClassName = (!win && word.letters.every((letter) => !!letter)) ?
+        `animate__animated animate__flipInX` : '';
 
     return (
         <div className={className}>
@@ -17,6 +19,7 @@ function Word({ word = {} }) {
                     className={`${letterClassName} animate__delay-${index}s`}
                     key={index}
                     letter={letter}
+                    disabled={true}
                 />
             ))}
         </div>
