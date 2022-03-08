@@ -19,7 +19,6 @@ function Word({ word = {} }) {
                     className={`${letterClassName} animate__delay-${index}s`}
                     key={index}
                     letter={letter}
-                    disabled={true}
                 />
             ))}
         </div>

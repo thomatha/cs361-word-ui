@@ -24,6 +24,9 @@ function LetterTile({ className, letter }) {
             id="letterTile"
             defaultValue={letter ? letter.letter : ''}
             className={className}
+            disabled={true}
+            contentEditable={false}
+            onSelect={false}
         />
     );
 }
