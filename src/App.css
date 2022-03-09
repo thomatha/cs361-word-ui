@@ -31,7 +31,7 @@ input {
 h1 {
   font-weight: bolder;
   font-size: 3rem;
-  margin-bottom: 0em;
+  margin-bottom: -0.57em;
 }
 
 h3 {
@@ -51,7 +51,7 @@ p {
 }
 
 #rules {
-  margin-bottom: 1rem;
+  margin: 1em;
 }
 
 #win {

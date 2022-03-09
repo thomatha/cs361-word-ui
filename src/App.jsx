@@ -74,7 +74,6 @@ function App() {
       <div className="App">
         <h1>WORD GUESS</h1>
         <hr />
-
         <Button id="rules" onClick={() => setGameRules(true)}>How to Play</Button>
         <Rules
           isOpen={gameRules}
