@@ -13,13 +13,14 @@ function Rules({ isOpen, toggle }) {
             </ModalHeader>
             <ModalBody>
                 <p>
-                    Guess the daily 5-letter word in 6 tries.
+                    Guess the daily 5-letter word in 6 tries.<br />
                     Type your word and press <strong>ENTER</strong> to submit.
-                    Hints will be given after each guess.
+                    <br />Hints will be given after each guess.<br />
                     Your guess will be shown as colored letter tiles.
-                    <strong> GREY</strong> means the letter is
-                    not in the word at all. <strong>YELLOW</strong> means the letter is in the wrong spot.
-                    <strong> GREEN</strong> means the letter is in the right spot.
+                    <br /><strong> GREY</strong> means the letter is
+                    not in the word at all.
+                    <br /><strong>YELLOW</strong> means the letter is in the wrong spot.
+                    <br /><strong> GREEN</strong> means the letter is in the right spot.
                 </p>
             </ModalBody>
         </Modal>
